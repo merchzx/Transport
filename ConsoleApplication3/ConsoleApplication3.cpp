@@ -12,12 +12,17 @@ protected:
     double razhodTopl;
 public:
     Transport() = default;
-    Transport(string _name, double _weiight, double _razhodTopl,double _costOfDelivery) {
+    Transport(string _name, double _weiight, double _razhodTopl) {
         name = _name;
         weight = _weiight;
         razhodTopl = _razhodTopl;
     }
-    void costOfDelivery() {
+    void setAll(string _name, double _weiight, double _razhodTopl,  double _klvoPass) {
+        name = _name;
+        weight = _weiight;
+        razhodTopl = _razhodTopl;
+    }
+    virtual void costOfDelivery() {
         cout << "NONE"<<endl;
     }
 };
@@ -26,10 +31,16 @@ class Car :public Transport {
     double klvoPass;
 public:
     Car() = default;
-    Car(string _name, double _weiight, double _razhodTopl, double _costOfDelivery, double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
+    Car(string _name, double _weiight, double _razhodTopl,  double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
         klvoPass = _klvoPass;
     }
-    void costOfDelivery(){
+    void setAll(string _name, double _weiight, double _razhodTopl,  double _klvoPass) {
+        name = _name;
+        weight = _weiight;
+        razhodTopl = _razhodTopl;
+        klvoPass = _klvoPass;
+    }
+     void costOfDelivery(){
         cout << "Cost Of Delivery = 500$";
     }
 };
@@ -40,7 +51,13 @@ class Airplane :public Transport {
     double klvoPass;
 public:
     Airplane() = default;
-    Airplane(string _name, double _weiight, double _razhodTopl, double _costOfDelivery, double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
+    Airplane(string _name, double _weiight, double _razhodTopl, double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
+        klvoPass = _klvoPass;
+    }
+    void setAll(string _name, double _weiight, double _razhodTopl, double _klvoPass) {
+        name = _name;
+        weight = _weiight;
+        razhodTopl = _razhodTopl;
         klvoPass = _klvoPass;
     }
     void costOfDelivery() {
@@ -54,7 +71,13 @@ class waterShip :public Transport {
     double klvoPass;
 public:
     waterShip() = default;
-    waterShip(string _name, double _weiight, double _razhodTopl, double _costOfDelivery, double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
+    waterShip(string _name, double _weiight, double _razhodTopl, double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
+        klvoPass = _klvoPass;
+    }
+    void setAll(string _name, double _weiight, double _razhodTopl, double _klvoPass) {
+        name = _name;
+        weight = _weiight;
+        razhodTopl = _razhodTopl;
         klvoPass = _klvoPass;
     }
     void costOfDelivery() {
@@ -68,7 +91,13 @@ class Gruz :public Transport {
     double klvoPass;
 public:
     Gruz() = default;
-    Gruz(string _name, double _weiight, double _razhodTopl, double _costOfDelivery, double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
+    Gruz(string _name, double _weiight, double _razhodTopl, double _klvoPass) :Transport(_name, _weiight, _razhodTopl) {
+        klvoPass = _klvoPass;
+    }
+    void setAll(string _name, double _weiight, double _razhodTopl, double _klvoPass) {
+        name = _name;
+        weight = _weiight;
+        razhodTopl = _razhodTopl;
         klvoPass = _klvoPass;
     }
     void costOfDelivery() {
@@ -80,7 +109,42 @@ public:
 
 int main()
 {
-    
+    Transport* transport = nullptr;
+    cout << "1. Car" << endl;
+    cout << "2. Airplane" << endl;
+    cout << "3. WaterShip" << endl;
+    cout << "4. Gruzovik" << endl;
+    int ch = 0;
+    cin >> ch;
+    switch (ch)
+    {
+    case(1):
+    {
+        transport = new Car;
+        transport->setAll("Audi",200,200,4);
+        break;
+    }
+    case(2):
+    {
+        transport = new Airplane;
+        transport->setAll("Audi", 200, 200, 4);
+        break;
+    }
+    case(3):
+    {
+        transport = new waterShip;
+        transport->setAll("Audi", 200, 200, 4);
+        break;
+    }
+    case(4):
+    {
+        transport = new Gruz;
+        transport->setAll("Audi", 200, 200, 4);
+        break;
+    }
+    }
+    transport->costOfDelivery();
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
